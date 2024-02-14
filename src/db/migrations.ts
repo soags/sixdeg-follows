@@ -11,12 +11,20 @@ export const migrationProvider: MigrationProvider = {
 migrations['001'] = {
   async up(db: Kysely<unknown>) {
     await db.schema
+      .createTable('subscriber')
+      .addColumn('did', 'varchar', (col) => col.primaryKey())
+      .execute()
+    await db.schema
       .createTable('post')
       .addColumn('uri', 'varchar', (col) => col.primaryKey())
-      .addColumn('cid', 'varchar', (col) => col.notNull())
-      .addColumn('replyParent', 'varchar')
-      .addColumn('replyRoot', 'varchar')
+      .addColumn('indexedBy', 'varchar', (col) => col.notNull())
       .addColumn('indexedAt', 'varchar', (col) => col.notNull())
+      .execute()
+    await db.schema
+      .createTable('follow')
+      .addColumn('uri', 'varchar', (col) => col.primaryKey())
+      .addColumn('author', 'varchar', (col) => col.notNull())
+      .addColumn('followee', 'varchar', (col) => col.notNull())
       .execute()
     await db.schema
       .createTable('sub_state')

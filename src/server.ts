@@ -65,7 +65,15 @@ export class FeedGenerator {
     await migrateToLatest(this.db)
     this.firehose.run(this.cfg.subscriptionReconnectDelay)
     this.server = this.app.listen(this.cfg.port, this.cfg.listenhost)
-    await events.once(this.server, 'listening')
+    
+    // TODO: 開発用
+    await this.db.
+      insertInto('subscriber')
+      .values({did: 'did:plc:ij6yt5ixxmjuylthp4mblyh7'})
+      .onConflict((oc) => oc.doNothing())
+      .execute()
+
+    await events.once(this.server, 'listening')    
     return this.server
   }
 }

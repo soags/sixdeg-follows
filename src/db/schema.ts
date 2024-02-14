@@ -1,14 +1,24 @@
 export type DatabaseSchema = {
+  subscriber: Subscriber
   post: Post
+  follow: Follow
   sub_state: SubState
 }
 
 export type Post = {
   uri: string
-  cid: string
-  replyParent: string | null
-  replyRoot: string | null
+  indexedBy: string
   indexedAt: string
+}
+
+export type Subscriber = {
+  did: string
+}
+
+export type Follow = {
+  uri: string
+  author: string
+  followee: string  
 }
 
 export type SubState = {
