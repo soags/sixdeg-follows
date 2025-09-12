@@ -13,9 +13,9 @@
   },
   "dependencies": {
     "@atproto/api": "^0.6.20",
-    "@atproto/identity": "^0.2.1",
+    "@atproto/identity": "^0.4.9",
     "@atproto/lexicon": "^0.2.2",
-    "@atproto/repo": "^0.3.2",
+    "@atproto/repo": "^0.8.9",
     "@atproto/syntax": "^0.1.2",
     "@atproto/xrpc-server": "^0.3.2",
     "better-sqlite3": "^8.3.0",
